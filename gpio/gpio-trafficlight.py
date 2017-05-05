@@ -21,16 +21,18 @@ from time import sleep
 # GP20
 # GP21 => Button
 
-buzzer = Buzzer(15)
+#buzzer = Buzzer(15)
 lights = TrafficLights(25, 8, 7)
 button = Button(21)
-
+lights.green.on()
 while True:
     button.wait_for_press()
-    lights.green.on()
-    sleep(1)
-    lights.amber.on()
-    sleep(1)
+    lights.green.off()
     lights.red.on()
     sleep(1)
-    lights.off()
+    button.wait_for_press()
+    lights.red.off()
+    lights.amber.on()
+    sleep(1)
+    lights.amber.off()
+    lights.green.on()
